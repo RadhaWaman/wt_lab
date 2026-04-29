@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIT Pune | SDP, EDI, DT & Course Projects</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero-section py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <h1 class="display-5 fw-bold mb-3">Vishwakarma Institute of Technology, Pune</h1>
+          <p class="lead mb-0">
+            Dynamic academic showcase highlighting how <strong>SDP</strong>, <strong>EDI</strong>, <strong>DT</strong>, and
+            <strong>Course Projects</strong> build innovation, professional skills, and career readiness.
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-lg hero-metric-card">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">Student Impact Meter</h2>
+              <div class="impact-score display-6 fw-bold" id="impactScore">0%</div>
+              <p class="mb-0 text-secondary small">Updates as you explore each learning component.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pb-5">
+    <section class="container">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-lg-5">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div>
+              <h2 class="h3 mb-1">Academic Components at VIT Pune</h2>
+              <p class="text-secondary mb-0">Click pills to explore relevance, outcomes, and industry alignment.</p>
+            </div>
+            <button class="btn btn-outline-primary" id="toggleModeBtn">Switch to Vertical Pills</button>
+          </div>
+
+          <div class="row g-4" id="pillWrapper">
+            <div class="col-lg-3" id="pillNavCol">
+              <div class="nav nav-pills custom-pills flex-row flex-lg-column" id="vit-pills" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active" id="sdp-tab" data-bs-toggle="pill" data-bs-target="#sdp-panel" type="button" role="tab" aria-controls="sdp-panel" aria-selected="true" data-score="92">SDP</button>
+                <button class="nav-link" id="edi-tab" data-bs-toggle="pill" data-bs-target="#edi-panel" type="button" role="tab" aria-controls="edi-panel" aria-selected="false" data-score="88">EDI</button>
+                <button class="nav-link" id="dt-tab" data-bs-toggle="pill" data-bs-target="#dt-panel" type="button" role="tab" aria-controls="dt-panel" aria-selected="false" data-score="90">DT</button>
+                <button class="nav-link" id="course-tab" data-bs-toggle="pill" data-bs-target="#course-panel" type="button" role="tab" aria-controls="course-panel" aria-selected="false" data-score="94">Course Projects</button>
+              </div>
+            </div>
+
+            <div class="col-lg-9">
+              <div class="tab-content" id="vit-pills-content">
+                <article class="tab-pane fade show active" id="sdp-panel" role="tabpanel" aria-labelledby="sdp-tab" tabindex="0">
+                  <div class="content-card">
+                    <h3 class="h4">SDP — Skill Development Program</h3>
+                    <p>SDP strengthens communication, aptitude, coding discipline, and workplace behavior needed for placements and internships.</p>
+                    <div class="row g-3 mt-2">
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Placement Readiness</span><strong>High</strong></div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Core Focus</span><strong>Professional Skills</strong></div>
+                      </div>
+                    </div>
+                    <div class="progress mt-4" role="progressbar" aria-label="SDP relevance">
+                      <div class="progress-bar" data-progress="92"></div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="tab-pane fade" id="edi-panel" role="tabpanel" aria-labelledby="edi-tab" tabindex="0">
+                  <div class="content-card">
+                    <h3 class="h4">EDI — Engineering Design & Innovation</h3>
+                    <p>EDI encourages students to identify real-world problems, build startup thinking, and build unique projects.</p>
+                    <div class="row g-3 mt-2">
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Startup Orientation</span><strong>Strong</strong></div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Core Focus</span><strong>Innovation & Enterprise</strong></div>
+                      </div>
+                    </div>
+                    <div class="progress mt-4" role="progressbar" aria-label="EDI relevance">
+                      <div class="progress-bar" data-progress="88"></div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="tab-pane fade" id="dt-panel" role="tabpanel" aria-labelledby="dt-tab" tabindex="0">
+                  <div class="content-card">
+                    <h3 class="h4">DT — Design Thinking</h3>
+                    <p>DT helps students empathize with users, prototype quickly, and iterate practical solutions with a human-centered approach.</p>
+                    <div class="row g-3 mt-2">
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Problem Solving</span><strong>Advanced</strong></div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Core Focus</span><strong>User-Centric Innovation</strong></div>
+                      </div>
+                    </div>
+                    <div class="progress mt-4" role="progressbar" aria-label="DT relevance">
+                      <div class="progress-bar" data-progress="90"></div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="tab-pane fade" id="course-panel" role="tabpanel" aria-labelledby="course-tab" tabindex="0">
+                  <div class="content-card">
+                    <h3 class="h4">Course Projects</h3>
+                    <p>Course projects convert theory into implementation through coding, documentation, teamwork, and presentation.</p>
+                    <div class="row g-3 mt-2">
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Practical Exposure</span><strong>Excellent</strong></div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mini-stat"><span>Core Focus</span><strong>Applied Learning</strong></div>
+                      </div>
+                    </div>
+                    <div class="progress mt-4" role="progressbar" aria-label="Course projects relevance">
+                      <div class="progress-bar" data-progress="94"></div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-4 border-top">
+    <div class="container text-center text-secondary small">
+      Crafted for academic presentation: VIT Pune learning ecosystem with Bootstrap + jQuery dynamic pills.
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
