@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Search & Sort Demo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container-main {
+            max-width: 1200px;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            color: #667eea;
+            font-weight: 700;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .input-group-custom {
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .result-container {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 50px;
+        }
+        .result-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .result-content {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            word-break: break-all;
+        }
+        .badge-custom {
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 600;
+        }
+        .input-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .row-custom {
+            margin-bottom: 15px;
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #0c5a96;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-main">
+        <!-- Header -->
+        <div class="header">
+            <h1>🔍 Array Search & Sort Demonstration</h1>
+            <p>Interactive Tool for Integer and Named Entity Arrays</p>
+        </div>
+
+        <!-- Integer Arrays Section -->
+        <div class="section-card">
+            <h2 class="section-title">📊 Integer Array Operations</h2>
+            
+            <div class="info-box">
+                💡 Enter comma-separated integers to create an array, then search or sort it.
+            </div>
+
+            <!-- Input Section -->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group-custom">
+                        <label class="input-label">Enter Integer Array (comma-separated):</label>
+                        <input type="text" id="intArrayInput" class="form-control" 
+                               placeholder="e.g., 45, 23, 67, 12, 89, 34" value="45, 23, 67, 12, 89, 34">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="input-label">&nbsp;</label>
+                    <button class="btn btn-primary btn-custom w-100" onclick="createIntegerArray()">
+                        ✓ Create Array
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Array Display -->
+            <div class="result-container" id="intCurrentArray">
+                <div class="result-title">Current Array:</div>
+                <div class="result-content">No array created yet</div>
+            </div>
+
+            <!-- Integer Search Section -->
+            <div class="row row-custom mt-4">
+                <div class="col-md-6">
+                    <label class="input-label">Search for Element:</label>
+                    <div class="input-group">
+                        <input type="number" id="intSearchValue" class="form-control" 
+                               placeholder="Enter number to search">
+                        <button class="btn btn-info btn-custom" type="button" onclick="searchInteger()">
+                            🔍 Search
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="result-container">
+                        <div class="result-title">Search Result:</div>
+                        <div class="result-content" id="intSearchResult">Waiting for search...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integer Sort Section -->
+            <div class="row row-custom mt-4">
+                <div class="col-md-6">
+                    <label class="input-label">Sorting Options:</label>
+                    <button class="btn btn-success btn-custom w-100 mb-2" onclick="sortIntegerAscending()">
+                        ⬆️ Sort Ascending
+                    </button>
+                    <button class="btn btn-warning btn-custom w-100" onclick="sortIntegerDescending()">
+                        ⬇️ Sort Descending
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="result-container">
+                        <div class="result-title">Sorted Array:</div>
+                        <div class="result-content" id="intSortResult">Waiting for sort...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Named Entities Section -->
+        <div class="section-card">
+            <h2 class="section-title">👥 Named Entity Array Operations</h2>
+            
+            <div class="info-box">
+                💡 Add named entities (Name and City), then search by name or sort by name/city.
+            </div>
+
+            <!-- Add Entity Section -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label class="input-label">Name:</label>
+                    <input type="text" id="entityName" class="form-control" placeholder="e.g., John Doe">
+                </div>
+                <div class="col-md-4">
+                    <label class="input-label">City:</label>
+                    <input type="text" id="entityCity" class="form-control" placeholder="e.g., New York">
+                </div>
+                <div class="col-md-4">
+                    <label class="input-label">&nbsp;</label>
+                    <button class="btn btn-primary btn-custom w-100" onclick="addEntity()">
+                        ➕ Add Entity
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Entities Display -->
+            <div class="result-container" id="entityCurrentList">
+                <div class="result-title">Current Entities:</div>
+                <div class="result-content" id="entityListContent">No entities added yet</div>
+            </div>
+
+            <!-- Entity Search Section -->
+            <div class="row row-custom mt-4">
+                <div class="col-md-6">
+                    <label class="input-label">Search by Name:</label>
+                    <div class="input-group">
+                        <input type="text" id="entitySearchName" class="form-control" 
+                               placeholder="Enter name to search">
+                        <button class="btn btn-info btn-custom" type="button" onclick="searchEntity()">
+                            🔍 Search
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="result-container">
+                        <div class="result-title">Search Result:</div>
+                        <div class="result-content" id="entitySearchResult">Waiting for search...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entity Sort Section -->
+            <div class="row row-custom mt-4">
+                <div class="col-md-6">
+                    <label class="input-label">Sorting Options:</label>
+                    <button class="btn btn-success btn-custom w-100 mb-2" onclick="sortEntityByName()">
+                        ⬆️ Sort by Name (A-Z)
+                    </button>
+                    <button class="btn btn-warning btn-custom w-100 mb-2" onclick="sortEntityByCity()">
+                        ⬆️ Sort by City (A-Z)
+                    </button>
+                    <button class="btn btn-danger btn-custom w-100" onclick="clearAllEntities()">
+                        🗑️ Clear All
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="result-container">
+                        <div class="result-title">Sorted Result:</div>
+                        <div class="result-content" id="entitySortResult">Waiting for sort...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ==================== INTEGER ARRAYS ====================
+        let integerArray = [];
+
+        // Create integer array from user input
+        function createIntegerArray() {
+            const input = $('#intArrayInput').val();
+            if (!input.trim()) {
+                alert('Please enter some integers!');
+                return;
+            }
+            
+            integerArray = input.split(',').map(x => {
+                const num = parseInt(x.trim());
+                return isNaN(num) ? 0 : num;
+            });
+
+            displayIntegerArray();
+            alert('Array created successfully!');
+        }
+
+        // Display current integer array
+        function displayIntegerArray() {
+            const displayText = integerArray.length > 0 ? 
+                '[' + integerArray.join(', ') + ']' : 
+                'No array created yet';
+            $('#intCurrentArray .result-content').html(displayText);
+        }
+
+        // Linear Search for Integer
+        function searchInteger() {
+            if (integerArray.length === 0) {
+                alert('Please create an array first!');
+                return;
+            }
+
+            const searchValue = parseInt($('#intSearchValue').val());
+            if (isNaN(searchValue)) {
+                alert('Please enter a valid number to search!');
+                return;
+            }
+
+            const index = integerArray.indexOf(searchValue);
+            let resultText;
+
+            if (index !== -1) {
+                resultText = `✓ Found! "${searchValue}" is at index <strong>${index}</strong>`;
+            } else {
+                resultText = `✗ Not found! "${searchValue}" is not in the array`;
+            }
+
+            $('#intSearchResult').html(resultText);
+        }
+
+        // Sort Integer Array - Ascending
+        function sortIntegerAscending() {
+            if (integerArray.length === 0) {
+                alert('Please create an array first!');
+                return;
+            }
+
+            const sortedArray = [...integerArray].sort((a, b) => a - b);
+            const resultText = '[' + sortedArray.join(', ') + ']';
+            $('#intSortResult').html(resultText);
+        }
+
+        // Sort Integer Array - Descending
+        function sortIntegerDescending() {
+            if (integerArray.length === 0) {
+                alert('Please create an array first!');
+                return;
+            }
+
+            const sortedArray = [...integerArray].sort((a, b) => b - a);
+            const resultText = '[' + sortedArray.join(', ') + ']';
+            $('#intSortResult').html(resultText);
+        }
+
+        // ==================== NAMED ENTITIES ====================
+        let entityArray = [];
+
+        // Add entity to array
+        function addEntity() {
+            const name = $('#entityName').val().trim();
+            const city = $('#entityCity').val().trim();
+
+            if (!name || !city) {
+                alert('Please enter both name and city!');
+                return;
+            }
+
+            entityArray.push({ name: name, city: city });
+            
+            // Clear inputs
+            $('#entityName').val('');
+            $('#entityCity').val('');
+
+            displayEntityList();
+            alert(`Entity "${name}" added successfully!`);
+        }
+
+        // Display current entities
+        function displayEntityList() {
+            if (entityArray.length === 0) {
+                $('#entityListContent').html('No entities added yet');
+                return;
+            }
+
+            let html = '<table class="table table-sm">';
+            html += '<thead><tr><th>#</th><th>Name</th><th>City</th></tr></thead><tbody>';
+            
+            entityArray.forEach((entity, index) => {
+                html += `<tr><td>${index + 1}</td><td>${entity.name}</td><td>${entity.city}</td></tr>`;
+            });
+
+            html += '</tbody></table>';
+            $('#entityListContent').html(html);
+        }
+
+        // Search Entity by Name
+        function searchEntity() {
+            if (entityArray.length === 0) {
+                alert('Please add some entities first!');
+                return;
+            }
+
+            const searchName = $('#entitySearchName').val().trim();
+            if (!searchName) {
+                alert('Please enter a name to search!');
+                return;
+            }
+
+            const found = entityArray.find(entity => 
+                entity.name.toLowerCase() === searchName.toLowerCase()
+            );
+
+            let resultText;
+            if (found) {
+                resultText = `✓ Found! <strong>${found.name}</strong> from <strong>${found.city}</strong>`;
+            } else {
+                resultText = `✗ Not found! No entity named "<strong>${searchName}</strong>"`;
+            }
+
+            $('#entitySearchResult').html(resultText);
+        }
+
+        // Sort Entity by Name
+        function sortEntityByName() {
+            if (entityArray.length === 0) {
+                alert('Please add some entities first!');
+                return;
+            }
+
+            const sortedArray = [...entityArray].sort((a, b) => 
+                a.name.localeCompare(b.name)
+            );
+
+            displaySortedEntities(sortedArray);
+        }
+
+        // Sort Entity by City
+        function sortEntityByCity() {
+            if (entityArray.length === 0) {
+                alert('Please add some entities first!');
+                return;
+            }
+
+            const sortedArray = [...entityArray].sort((a, b) => 
+                a.city.localeCompare(b.city)
+            );
+
+            displaySortedEntities(sortedArray);
+        }
+
+        // Display sorted entities
+        function displaySortedEntities(sortedArray) {
+            let html = '<table class="table table-sm">';
+            html += '<thead><tr><th>#</th><th>Name</th><th>City</th></tr></thead><tbody>';
+            
+            sortedArray.forEach((entity, index) => {
+                html += `<tr><td>${index + 1}</td><td>${entity.name}</td><td>${entity.city}</td></tr>`;
+            });
+
+            html += '</tbody></table>';
+            $('#entitySortResult').html(html);
+        }
+
+        // Clear all entities
+        function clearAllEntities() {
+            if (entityArray.length === 0) {
+                alert('No entities to clear!');
+                return;
+            }
+
+            if (confirm('Are you sure you want to delete all entities?')) {
+                entityArray = [];
+                displayEntityList();
+                $('#entitySearchResult').html('Waiting for search...');
+                $('#entitySortResult').html('Waiting for sort...');
+                alert('All entities cleared!');
+            }
+        }
+
+        // Initialize on page load
+        $(document).ready(function() {
+            createIntegerArray();
+            displayIntegerArray();
+        });
+    </script>
+</body>
+</html>
